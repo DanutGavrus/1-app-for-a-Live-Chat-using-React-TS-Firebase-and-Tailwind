@@ -1,2 +1,8 @@
-# 1-app-for-a-Live-Chat-using-React-TS-and-Firebase
-1 live chat which I have developed in my free time using React TS and Firebase in January 2023.
+# Live Chat
+## Simple and Modern Live Chat app
+
+For now, this is only an empty react app.
+
+### Chat categories
+
+There will be categories for the live chat app in the future.
