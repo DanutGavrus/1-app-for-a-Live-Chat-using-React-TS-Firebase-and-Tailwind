@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth";
 
+// Initialize Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyDIvHMVWikWd_YQgeDiZh3QtVa_LnLosHI",
   authDomain: "live-chat-bde08.firebaseapp.com",
@@ -10,8 +11,12 @@ const firebaseConfig = {
   appId: "1:570171681471:web:3d8de74a8f3e511730340a",
   measurementId: "G-JM0FJBMNDY"
 };
+initializeApp(firebaseConfig);
 
-const firebaseApp = initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebaseApp);
+// Provide sign in with Google
+const auth = getAuth();
+const signIn = () => {
+  signInWithRedirect(auth, new GoogleAuthProvider());
+};
 
-export default firebaseApp;
+export { auth, signIn };
