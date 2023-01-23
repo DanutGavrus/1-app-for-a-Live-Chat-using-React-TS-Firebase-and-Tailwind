@@ -11,8 +11,8 @@ export default function LiveChat({ categories }) {
           })}
         </ul>
       </div>
-      <div className="flex flex-col rounded-xl col-span-3 bg-black bg-opacity-20">
-        <h1 className="py-3 text-center text-xl">Messages</h1>
+      <div className="flex relative flex-col rounded-xl col-span-3 bg-black overflow-y-scroll bg-opacity-20">
+        <h1 className="py-3 backdrop-blur-sm sticky top-0 text-center text-xl">Messages</h1>
         <ul>
           <li className="mb-1 ml-2">Salut, ce faci?</li>
           <li className="mb-1 ml-2">Salut, bine, tu?</li>
@@ -23,10 +23,18 @@ export default function LiveChat({ categories }) {
           <li className="mb-1 ml-2">Salut, ce faci?</li>
           <li className="mb-1 ml-2">Salut, bine, tu?</li>
           <li className="mb-1 ml-2">Bine.</li>
+          <li className="mb-1 ml-2">Bine.</li>
+          <li className="mb-1 ml-2">Salut, ce faci?</li>
+          <li className="mb-1 ml-2">Salut, bine, tu?</li>
+          <li className="mb-1 ml-2">Bine.</li>
+          <li className="mb-1 ml-2">Bine.</li>
+          <li className="mb-1 ml-2">Salut, ce faci?</li>
+          <li className="mb-1 ml-2">Salut, bine, tu?</li>
+          <li className="mb-1 ml-2">Bine.</li>
         </ul>
-        <div className="h-10 mt-auto grid grid-cols-12">
+        <div className="h-10 sticky bottom-0 mt-auto grid grid-cols-12">
           <input type="text" className="col-span-11 rounded-bl-xl pl-1 opacity-75" />
-          <button className="bg-[var(--color-second)] col-span-1 rounded-br-lg">></button>
+          <button className="bg-[var(--color-second)] col-span-1 rounded-br-lg"></button>
         </div>
       </div>
     </div>
