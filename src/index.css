@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TAILWIND EXTENSIONS */
+.from-color-second-to-accent {
+  --tw-gradient-stops: var(--color-second), var(--color-accent);
+}
+
+.from-color-main-to-aux {
+  --tw-gradient-stops: var(--color-main), var(--color-aux);
+}
+
+/* COLOR PALETTE */
+:root {
+  --light-main: #F8EDE3;
+  --light-second: #DFD3C3;
+  --light-aux: #D0B8A8;
+  --light-accent: #85586F;
+  --light-text: #000000;
+
+  /* --dark-main: #F8EDE3;
+  --dark-second: #DFD3C3;
+  --dark-aux: #D0B8A8;
+  --dark-accent: #85586F;
+  --dark-text: #? */
+
+  --color-main: var(--light-main);
+  --color-second: var(--light-second);
+  --color-aux: var(--light-aux);
+  --color-accent: var(--light-accent);
+  --color-text: var(--light-text);
+
+  --bg-color: var(--color-main);
+}

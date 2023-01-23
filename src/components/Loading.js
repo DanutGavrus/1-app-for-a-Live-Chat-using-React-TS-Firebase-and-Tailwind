@@ -1,6 +1,7 @@
 export default function Loading() {
   return (
-    <div className="loading">
+    <div className="loading-page">
+      {/* TODO */}
       <p>Loading</p>
     </div>
   )
