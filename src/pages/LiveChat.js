@@ -11,7 +11,9 @@ export default function LiveChat({ categories }) {
           })}
         </ul>
       </div>
-      <div className="flex relative flex-col rounded-xl col-span-3 bg-black overflow-y-scroll bg-opacity-20">
+      {/* <div className="flex relative flex-col rounded-xl col-span-3 border-2 border-black bg-black overflow-y-scroll bg-opacity-20"> */}
+      <div className="flex relative flex-col rounded-xl col-span-3 border-2 border-primary bg-primary overflow-y-scroll bg-opacity-20">
+          {/* Am pus pe tailwind.config exemplu de cum trebe sa pui pallete sa poti accesa cu border-primary text-primary etc */}
         <h1 className="py-3 backdrop-blur-sm sticky top-0 text-center text-xl">Messages</h1>
         <ul>
           <li className="mb-1 ml-2">Salut, ce faci?</li>
