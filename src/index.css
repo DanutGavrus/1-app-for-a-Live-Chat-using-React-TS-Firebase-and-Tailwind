@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* TAILWIND EXTENSIONS */
+.from-color-second-to-accent {
+  --tw-gradient-stops: var(--color-second), var(--color-main);
+}
+
+
+
+/* COLOR PALETTE */
+:root {
+  --light-main: #F8EDE3;
+  --light-second: #DFD3C3;
+  --light-aux: #D0B8A8;
+  --light-accent: #85586F;
+  --light-text: #000000;
+
+  /* --dark-main: #F8EDE3;
+  --dark-second: #DFD3C3;
+  --dark-aux: #D0B8A8;
+  --dark-accent: #85586F;
+  --dark-text: #? */
+
+  --color-main: var(--light-main);
+  --color-second: var(--light-second);
+  --color-aux: var(--light-aux);
+  --color-accent: var(--light-accent);
+  --color-text: var(--light-text);
+
+  --bg-color: var(--color-main);
+}
+
+
+
+/* PAGE SCROLLBAR */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 10px var(--color-accent);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-accent);
+  border-radius: 10px;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

@@ -5,6 +5,7 @@ export default function SignIn({ signIn }) {
 
   return (
     <div className="sign-in-page">
+      {/* TODO */}
       <button onClick={handleSignIn}>Sign in</button>
     </div>
   )
