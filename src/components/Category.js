@@ -1,6 +1,6 @@
-export default function Category({ category }) {
+export default function Category({ innerRef, category }) {
   return (
-    <li className="ml-3 mb-4">
+    <li ref={innerRef} className="ml-3 mb-4">
       {/* <img src={category.src} /> */}
       <h1>{category.title}</h1>
       <p>{category.description}</p>
