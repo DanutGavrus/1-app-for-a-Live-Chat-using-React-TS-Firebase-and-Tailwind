@@ -37,16 +37,16 @@
 
 
 /* PAGE SCROLLBAR */
-::-webkit-scrollbar {
+.scrollbar-fancy::-webkit-scrollbar {
   width: 0.5rem;
 }
 
-::-webkit-scrollbar-track {
+.scrollbar-fancy::-webkit-scrollbar-track {
   box-shadow: inset 0 0 10px var(--color-accent);
   border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb {
+.scrollbar-fancy::-webkit-scrollbar-thumb {
   background: var(--color-accent);
   border-radius: 10px;
 }

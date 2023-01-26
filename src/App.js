@@ -17,27 +17,33 @@ function App() {
         {!loading && user && <LiveChat categories={[
           {
             id: 1,
-            src: "assets/icons/loupe.png",
+            unicode: "☕",
             title: "Coffee and stories",
-            description: "Lorem ipsum dolor sit amet adipisicing"
+            description: "General topic for any subject out there."
           },
           {
             id: 2,
-            src: "assets/icons/loupe.png",
+            unicode: "\🏕️",
             title: "Outdoor activities",
-            description: "Consectetur adipisicing elit dolor sit id eum."
+            description: "Feel like discussing about an outside activity?"
           },
           {
             id: 3,
-            src: "assets/icons/loupe.png",
+            unicode: "🎮",
             title: "Gaming",
-            description: "Unde id eum consectetur magni dignissimos suscipit."
+            description: "Just gamers speaking about games."
           },
           {
             id: 4,
-            src: "assets/icons/loupe.png",
+            unicode: "📗",
             title: "Book club",
-            description: "Soluta blanditiis dolore veritatis adipisicing elit."
+            description: "Share something interesting you've read?."
+          },
+          {
+            id: 5,
+            unicode: "📻",
+            title: "Music club",
+            description: "Tell others about the best sounds you've heard."
           }
         ]} />}</>}>
       </Route>
