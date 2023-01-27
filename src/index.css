@@ -5,7 +5,7 @@
 
 
 /* TAILWIND EXTENSIONS */
-.from-color-second-to-accent {
+.from-color-second-to-main {
   --tw-gradient-stops: var(--color-second), var(--color-main);
 }
 
@@ -17,13 +17,13 @@
   --light-second: #DFD3C3;
   --light-aux: #D0B8A8;
   --light-accent: #85586F;
-  --light-text: #000000;
+  --light-text: #333333;
 
-  /* --dark-main: #F8EDE3;
-  --dark-second: #DFD3C3;
-  --dark-aux: #D0B8A8;
-  --dark-accent: #85586F;
-  --dark-text: #? */
+  --dark-main: #181818;
+  --dark-second: #301E67;
+  --dark-aux: #3B6F99;
+  --dark-accent: #568A7A;
+  --dark-text: #E8DDD3;
 
   --color-main: var(--light-main);
   --color-second: var(--light-second);
@@ -54,3 +54,7 @@
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
+/* TODO: Light/dark mode switcher */
+/* TODO: Move color palette to tailwind config? */
+/* TODO: Mobile UI */
