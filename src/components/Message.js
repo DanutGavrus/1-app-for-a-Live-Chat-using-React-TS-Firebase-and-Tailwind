@@ -1,9 +1,14 @@
-export default function Message() {
+export default function Message({ message }) {
+  // TODO: create a link which redirect user to sending an email to the author
+  // TODO: pass the link from the profile picture provided by Firebase
+  let pClassName = "font-serif w-fit max-w-[75%] bg-gradient-to-br from-color-second-to-main px-3 py-1 rounded-2xl";
+  let liClassName = "mb-1 mx-3";
+  if (message.user == "Danut Gavrus") {
+    pClassName += " ml-auto";
+  }
   return (
-    <>
-      <li className="mb-1 ml-3">Salut, ce faci?</li>
-      <li className="mb-1 ml-3">Salut, bine, tu?</li>
-      <li className="mb-1 ml-3">Bine.</li>
-    </>
+    <li className={liClassName}>
+      <p className={pClassName}>{message.tempIcon + " " + message.user + ": " + message.content}</p>
+    </li>
   );
 }
