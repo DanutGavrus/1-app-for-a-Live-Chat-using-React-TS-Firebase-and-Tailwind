@@ -20,5 +20,3 @@ const signIn = () => {
 };
 
 export { auth, signIn };
-
-// TODO: connect to Firebase DB and get the categories and messages from there
