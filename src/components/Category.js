@@ -1,7 +1,7 @@
 import { useRef } from "react";
 
 export default function Category({ innerRef, category, setChatHeader, last }) {
-  let liClassName = "pl-3 hover:cursor-pointer";
+  let liClassName = "pl-3 hover:cursor-pointer ";
   if (!last) {
     liClassName += " mb-6";
   }
@@ -14,8 +14,8 @@ export default function Category({ innerRef, category, setChatHeader, last }) {
 
   return (
     <li ref={innerRef} onClick={updateChatHeader} className={liClassName}>
-      <h1 ref={chatHeaderRef} className="font-serif">{category.unicode + " " + category.title}</h1>
-      <p className="font-thin">{category.description}</p>
+      <h1 ref={chatHeaderRef}>{category.unicode + " " + category.title}</h1>
+      <p className="font-thin font-[system-ui]">{category.description}</p>
     </li>
   );
 }
