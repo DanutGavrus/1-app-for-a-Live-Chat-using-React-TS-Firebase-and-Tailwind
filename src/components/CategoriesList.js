@@ -3,7 +3,6 @@ import { useRef, useEffect } from "react";
 import Category from "../components/Category";
 
 export default function CategoriesList({ categoriesList, setChatHeader }) {
-  // TODO: Add clear icon to categories search bar
   // TOOD: Update messages based on the current category
   const scrollDownBtn = useRef();
   const lastCategoryRef = useRef();
@@ -65,9 +64,15 @@ export default function CategoriesList({ categoriesList, setChatHeader }) {
     firstCategoryRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const clearSearchText = () => {
+    setSearchText("");
+    searchBarRef.current.value = "";
+  }
+
   return (
-    <div className="flex flex-col overflow-y-auto">
-      <input ref={searchBarRef} type="text" placeholder="Search categories ..." onChange={(e) => { setSearchText(e.target.value) }} className="font-serif rounded-xl mx-3 mt-6 px-3 py-1 box-border border border-transparent focus:outline-none focus:border-[var(--color-accent)]" />
+    <div className="flex flex-col overflow-y-auto relative">
+      <input ref={searchBarRef} type="text" placeholder="Search categories ..." onChange={(e) => { setSearchText(e.target.value) }} className="font-serif rounded-xl mx-3 mt-6 pl-3 pr-4 py-1 box-border border border-transparent focus:outline-none focus:border-[var(--color-accent)]" />
+      {searchText && <button onClick={clearSearchText} className="h-3 absolute top-7 right-[1.1rem] items-center">✗</button>}
       <button ref={scrollUpBtn} onClick={scrollCategoriesTop} className="h-6 invisible">{"↑"}</button>
       <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
         {categoriesList?.filter(category => category.title.toLowerCase().includes(searchText.toLowerCase())).map((category, i, { length }) => {

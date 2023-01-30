@@ -132,10 +132,13 @@ function App() {
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<RootLayout displayName={user && user.displayName} />}>
-      <Route index element={<>
-        {loading && <Loading />}
-        {!loading && !user && <SignIn signIn={signIn} />}
-        {!loading && user && <LiveChat categoriesList={categoriesList} messagesList={messagesList} />}</>}>
+      <Route index element={
+        <>
+          {loading && <Loading />}
+          {!loading && !user && <SignIn signIn={signIn} />}
+          {!loading && user && <LiveChat categoriesList={categoriesList} messagesList={messagesList} />}
+        </>
+      }>
       </Route>
     </Route >
   ))
