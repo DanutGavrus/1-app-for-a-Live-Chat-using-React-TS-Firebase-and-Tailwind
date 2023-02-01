@@ -13,10 +13,9 @@ function App() {
     <Route path="/" element={<RootLayout displayName={user && user.displayName} />}>
       <Route index element={
         <>
-          {<Loading />}
-          {/* {loading && <Loading />} */}
-          {/* {!loading && !user && <SignIn />}
-          {!loading && user && <LiveChat />} */}
+          {loading && <Loading />}
+          {!loading && !user && <SignIn />}
+          {!loading && user && <LiveChat />}
         </>
       }>
       </Route>
