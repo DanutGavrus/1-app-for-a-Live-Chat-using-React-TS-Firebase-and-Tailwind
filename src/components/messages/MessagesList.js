@@ -1,7 +1,6 @@
 import Message from "./Message";
 
 export default function MessagesList({ messagesList }) {
-  // TODO: Add messages pagination
   return (
     <>
       <ul>

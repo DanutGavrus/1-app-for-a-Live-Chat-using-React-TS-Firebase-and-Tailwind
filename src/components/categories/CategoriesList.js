@@ -18,7 +18,6 @@ export default function CategoriesList({ searchText, setChatHeader }) {
   const categoriesListRef = useRef();
 
   useEffect(() => {
-    AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAa
     if (categoriesList?.length > 0) {
       setChatHeader(categoriesList[0].unicode + " " + categoriesList[0].title);
     }
