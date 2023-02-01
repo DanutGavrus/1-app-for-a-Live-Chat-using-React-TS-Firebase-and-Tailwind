@@ -13,9 +13,10 @@ function App() {
     <Route path="/" element={<RootLayout displayName={user && user.displayName} />}>
       <Route index element={
         <>
-          {loading && <Loading />}
-          {!loading && !user && <SignIn />}
-          {!loading && user && <LiveChat />}
+          {<Loading />}
+          {/* {loading && <Loading />} */}
+          {/* {!loading && !user && <SignIn />}
+          {!loading && user && <LiveChat />} */}
         </>
       }>
       </Route>
