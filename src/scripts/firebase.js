@@ -11,7 +11,7 @@ const firebaseConfig = {
   appId: "1:570171681471:web:3d8de74a8f3e511730340a",
   measurementId: "G-JM0FJBMNDY"
 };
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 
 // Provide sign in with Google
 const auth = getAuth();
@@ -19,4 +19,6 @@ const signIn = () => {
   signInWithRedirect(auth, new GoogleAuthProvider());
 };
 
-export { auth, signIn };
+// TODO: Provide sign out
+
+export { auth, app, signIn };

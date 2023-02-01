@@ -1,12 +1,14 @@
-export default function SignIn({ signIn }) {
+import { signIn } from "../scripts/firebase.js";
+
+export default function SignIn() {
   const handleSignIn = () => {
     signIn();
   }
 
   return (
-    <div className="sign-in-page">
+    <>
       {/* TODO: Sing in page UI*/}
-      <button onClick={handleSignIn}>Sign in</button>
-    </div>
+      <button onClick={handleSignIn} className="w-full m-auto">Sign in</button>
+    </>
   )
 }
