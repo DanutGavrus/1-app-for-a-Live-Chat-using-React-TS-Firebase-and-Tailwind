@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-export default function Category({ innerRef, category, setChatHeader, last }) {
+export default function Category({ category, setChatHeader, innerRef, last }) {
   let liClassName = "pl-3 hover:cursor-pointer ";
   if (!last) {
     liClassName += " mb-6";
