@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
+// TODO: Firestore security for calls
+// TODO: useMemo for firestore data?
 // Initialize Firebase
 const app = initializeApp({
   apiKey: "AIzaSyDIvHMVWikWd_YQgeDiZh3QtVa_LnLosHI",
@@ -19,9 +21,7 @@ const signIn = () => {
   signInWithRedirect(auth, new GoogleAuthProvider());
 };
 
-// Tie to Firestore
+// Get Firestore db
 const firestore = getFirestore(app);
-
-// TODO: Provide sign out
 
 export { auth, signIn, firestore };

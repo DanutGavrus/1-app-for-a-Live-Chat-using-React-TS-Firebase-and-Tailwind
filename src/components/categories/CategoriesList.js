@@ -5,7 +5,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 import { firestore } from "../../scripts/firebase";
 import { query, collection, orderBy } from "firebase/firestore";
 
-export default function CategoriesList({ searchText, setChatHeader, setCurrentCategoryId }) {
+export default function CategoriesList({ searchText, setChatHeader, setCategoryId }) {
   const [categoriesListCollection, loading, error] = useCollection(query(collection(firestore, "categoriesList"), orderBy("timestamp")));
   const [categoriesList, setCategoriesList] = useState([]);
   const [categoriesFiltered, setCategoriesFiltered] = useState([]);
@@ -84,15 +84,15 @@ export default function CategoriesList({ searchText, setChatHeader, setCurrentCa
 
   return (
     <>
-      {loading && !error && <p className="mt-6 px-3 text-center">Loading...</p>}
-      {!loading && error && <p className="mt-6 px-3 text-center">Something went wrong. Please check your internet connection or try again later.</p>}
+      {loading && !error && <p className="mt-6 px-3 text-center font-bold text-[var(--color-accent)]">Loading...</p>}
+      {!loading && error && <p className="mt-6 px-3 text-center font-bold text-[var(--color-accent)]">Something went wrong. Please check your internet connection or try again later.</p>}
       {!loading && !error &&
         <>
           <button ref={scrollUpBtn} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
           {categoriesFiltered?.length > 0 &&
             <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
               {categoriesFiltered?.map((category, i, { length }) => {
-                let categoryComponent = <Category key={category.id} id={category.id} category={category} setChatHeader={setChatHeader} setCurrentCategoryId={setCurrentCategoryId} />;
+                let categoryComponent = <Category key={category.id} id={category.id} category={category} setChatHeader={setChatHeader} setCategoryId={setCategoryId} />;
                 if (i === 0) {
                   categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef, first: true });
                 }
