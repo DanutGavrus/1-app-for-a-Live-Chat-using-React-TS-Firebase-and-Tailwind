@@ -26,6 +26,7 @@ export default function MessagesList({ categoryId, user }) {
   const handleSendMessage = (key) => {
     // TODO: Correct way to implement this?
     if (key === 'Enter' && messageContent?.length > 0) {
+      // TODO: Clear message bar only after call succeeds
       addDoc(messagesListDb, {
         categoryId: categoryId,
         userId: user.uid,
