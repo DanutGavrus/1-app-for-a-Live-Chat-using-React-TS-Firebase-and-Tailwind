@@ -1,14 +1,13 @@
-import { app } from "../../scripts/firebase";
-import { getFirestore, collection, query, orderBy } from "firebase/firestore";
 import { cloneElement, useCallback, useState } from "react";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useLayoutEffect } from "react";
 import Category from "./Category";
-import { useCollectionData } from "react-firebase-hooks/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
+import { firestore } from "../../scripts/firebase";
+import { query, collection, orderBy } from "firebase/firestore";
 
-export default function CategoriesList({ searchText, setChatHeader }) {
-  const [categoriesList, loading, error] = useCollectionData(
-    query(collection(getFirestore(app), "categoriesList"), orderBy("timestamp"))
-  );
+export default function CategoriesList({ searchText, setChatHeader, setCategoryId }) {
+  const [categoriesListCollection, loading, error] = useCollection(query(collection(firestore, "categoriesList"), orderBy("timestamp")));
+  const [categoriesList, setCategoriesList] = useState([]);
   const [categoriesFiltered, setCategoriesFiltered] = useState([]);
 
   const scrollDownBtn = useRef();
@@ -18,16 +17,20 @@ export default function CategoriesList({ searchText, setChatHeader }) {
   const categoriesListRef = useRef();
 
   useEffect(() => {
-    if (categoriesList?.length > 0) {
-      setChatHeader(categoriesList[0].unicode + " " + categoriesList[0].title);
+    if (categoriesListCollection?.docs?.length > 0) {
+      setCategoriesList(categoriesListCollection.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() }
+      }));
     }
+  }, [categoriesListCollection]);
 
+  useEffect(() => {
     if (searchText?.length > 0) {
       setCategoriesFiltered(categoriesList?.filter(category => category.title.toLowerCase().includes(searchText.toLowerCase())));
     } else {
       setCategoriesFiltered(categoriesList);
     }
-  }, [setChatHeader, categoriesList, searchText]);
+  }, [searchText, categoriesList]);
 
   const manageScrollBtnsVisibility = useCallback(() => {
     // Categories overflow
@@ -45,7 +48,7 @@ export default function CategoriesList({ searchText, setChatHeader }) {
     }
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     manageScrollBtnsVisibility();
 
     window.addEventListener("resize", manageScrollBtnsVisibility);
@@ -81,17 +84,17 @@ export default function CategoriesList({ searchText, setChatHeader }) {
 
   return (
     <>
-      {loading && !error && <p className="mt-6 px-3 text-center">Loading...</p>}
-      {!loading && error && <p className="mt-6 px-3 text-center">Something went wrong. Please check your internet connection or try again later.</p>}
+      {loading && !error && <p className="mt-6 px-3 text-center font-bold text-[var(--color-accent)]">Loading...</p>}
+      {!loading && error && <p className="mt-6 px-3 text-center font-bold text-[var(--color-accent)]">Something went wrong. Please check your internet connection or try again later.</p>}
       {!loading && !error &&
         <>
           <button ref={scrollUpBtn} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
           {categoriesFiltered?.length > 0 &&
             <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
               {categoriesFiltered?.map((category, i, { length }) => {
-                let categoryComponent = <Category key={crypto.randomUUID()} category={category} setChatHeader={setChatHeader} />;
+                let categoryComponent = <Category key={category.id} id={category.id} category={category} setChatHeader={setChatHeader} setCategoryId={setCategoryId} />;
                 if (i === 0) {
-                  categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef });
+                  categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef, first: true });
                 }
                 if (i === length - 1) {
                   categoryComponent = cloneElement(categoryComponent, { innerRef: lastCategoryRef, last: true });
