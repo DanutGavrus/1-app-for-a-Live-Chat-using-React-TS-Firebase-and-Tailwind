@@ -1,4 +1,8 @@
-export default function Message({ user, message }) {
+import { useOutletContext } from "react-router-dom";
+
+export default function Message({ message }) {
+  const user = useOutletContext();
+
   // TODO: Check how many times this component rerenders
   let pClassName = "block w-fit max-w-[75%] bg-gradient-to-br from-color-second-to-main px-3 py-1 rounded-2xl";
   let liClassName = "mb-1 mx-3";

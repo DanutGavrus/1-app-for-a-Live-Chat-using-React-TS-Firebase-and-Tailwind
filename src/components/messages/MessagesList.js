@@ -3,9 +3,12 @@ import { useState, useEffect, useRef } from "react";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { firestore } from "../../scripts/firebase";
 import { query, collection, where, orderBy, addDoc, serverTimestamp } from "firebase/firestore";
+import { useOutletContext } from "react-router-dom";
 
 // TODO: Messages pagination
-export default function MessagesList({ categoryId, user }) {
+export default function MessagesList({ categoryId }) {
+  const user = useOutletContext();
+
   const messagesListDb = collection(firestore, "messagesList");
   // TODO: Check how many times messages list is loaded
   const [messagesListCollection, loadingMessages, errorMessages] = useCollection(query(messagesListDb, where("categoryId", "==", categoryId), orderBy("timestamp")));
@@ -51,7 +54,7 @@ export default function MessagesList({ categoryId, user }) {
           {messagesList?.length > 0 &&
             <ul>
               {messagesList.map((message) => {
-                return <Message key={message.id} user={user} message={message} />
+                return <Message key={message.id} message={message} />
               })}
             </ul>
           }
