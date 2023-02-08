@@ -4,11 +4,12 @@ import Category from "./Category";
 import { useCollection } from "react-firebase-hooks/firestore";
 import { firestore } from "../../scripts/firebase";
 import { query, collection, orderBy } from "firebase/firestore";
+import SearchBar from "../SearchBar";
 
-export default function CategoriesList({ searchText, setChatHeader, setCategoryId }) {
+export default function CategoriesList({ setChatHeader, setCategoryId }) {
   const [categoriesListCollection, loading, error] = useCollection(query(collection(firestore, "categoriesList"), orderBy("timestamp")));
   const [categoriesList, setCategoriesList] = useState([]);
-  const [categoriesFiltered, setCategoriesFiltered] = useState([]);
+  const [categoriesFiltered, setCategoriesFiltered] = useState(categoriesList);
 
   const scrollDownBtn = useRef();
   const lastCategoryRef = useRef();
@@ -18,19 +19,21 @@ export default function CategoriesList({ searchText, setChatHeader, setCategoryI
 
   useEffect(() => {
     if (categoriesListCollection?.docs?.length > 0) {
-      setCategoriesList(categoriesListCollection.docs.map((doc) => {
+      const categoriesList = categoriesListCollection.docs.map((doc) => {
         return { id: doc.id, ...doc.data() }
-      }));
+      })
+      setCategoriesList(categoriesList);
+      setCategoriesFiltered(categoriesList);
     }
   }, [categoriesListCollection]);
 
-  useEffect(() => {
+  const onSearchTextChanged = (searchText) => {
     if (searchText?.length > 0) {
       setCategoriesFiltered(categoriesList?.filter(category => category.title.toLowerCase().includes(searchText.toLowerCase())));
     } else {
       setCategoriesFiltered(categoriesList);
     }
-  }, [searchText, categoriesList]);
+  }
 
   const manageScrollBtnsVisibility = useCallback(() => {
     // Categories overflow
@@ -84,6 +87,7 @@ export default function CategoriesList({ searchText, setChatHeader, setCategoryI
 
   return (
     <>
+      <SearchBar placeholder="Search categories ..." onSearchTextChanged={onSearchTextChanged} />
       {loading && !error && <p className="mt-6 px-3 text-center font-bold text-[var(--color-accent)]">Loading...</p>}
       {!loading && error && <p className="mt-6 px-3 text-center font-bold text-[var(--color-accent)]">Something went wrong. Please check your internet connection or try again later.</p>}
       {!loading && !error &&
