@@ -11,7 +11,7 @@ export default function Message({ message }) {
   }
   return (
     <li className={liClassName}>
-      <p className={pClassName}><img src={message.userIcon} alt="User icon." className="w-4 mb-0.5 inline-block rounded-3xl" /> <a href={`mailto:${message.userEMail}`} target="_blank" rel="noreferrer" className="underline font-bold text-[var(--color-accent)]">{message.userDisplayName.split(" ")[0]}</a>{": " + message.content}</p>
+      <p className={pClassName}><img src={message.userIcon} alt="User icon." className="w-4 h-4 mb-0.5 inline-block rounded-3xl" /> <a href={`mailto:${message.userEMail}`} target="_blank" rel="noreferrer" className="underline font-bold text-[var(--color-accent)]">{message.userDisplayName.split(" ")[0]}</a>{": " + message.content}</p>
     </li>
   );
 }

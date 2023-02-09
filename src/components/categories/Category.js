@@ -1,18 +1,13 @@
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect } from "react";
 
-export default function Category({ id, category, setChatHeader, setCategoryId, innerRef, first, last }) {
-  const chatHeaderRef = useRef();
-
-  const setHeaderAndCategoryId = useCallback(() => {
-    setChatHeader(chatHeaderRef.current?.innerHTML);
-    setCategoryId(id);
-  }, [setChatHeader, setCategoryId, id]);
+export default function Category({ id, category, refreshMessagesList, innerRef, first, last }) {
+  const chatHeader = category.unicode + " " + category.title;
 
   useEffect(() => {
     if (first) {
-      setHeaderAndCategoryId();
+      refreshMessagesList(id, chatHeader);
     }
-  }, [setHeaderAndCategoryId, first]);
+  }, [first, refreshMessagesList, id, chatHeader]);
 
   let liClassName = "pl-3 hover:cursor-pointer";
   if (!last) {
@@ -20,8 +15,8 @@ export default function Category({ id, category, setChatHeader, setCategoryId, i
   }
 
   return (
-    <li ref={innerRef} onClick={() => { setHeaderAndCategoryId() }} className={liClassName}>
-      <h1 ref={chatHeaderRef}>{category.unicode + " " + category.title}</h1>
+    <li ref={innerRef} onClick={() => { refreshMessagesList(id, chatHeader) }} className={liClassName}>
+      <h1>{chatHeader}</h1>
       <p className="font-thin font-[system-ui]">{category.description}</p>
     </li>
   );

@@ -6,7 +6,7 @@ import { firestore } from "../../scripts/firebase";
 import { query, collection, orderBy } from "firebase/firestore";
 import SearchBar from "../SearchBar";
 
-export default function CategoriesList({ setChatHeader, setCategoryId }) {
+export default function CategoriesList({ refreshMessagesList }) {
   const [categoriesListCollection, loading, error] = useCollection(query(collection(firestore, "categoriesList"), orderBy("timestamp")));
   const [categoriesList, setCategoriesList] = useState([]);
   const [categoriesFiltered, setCategoriesFiltered] = useState(categoriesList);
@@ -96,7 +96,7 @@ export default function CategoriesList({ setChatHeader, setCategoryId }) {
           {categoriesFiltered?.length > 0 &&
             <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
               {categoriesFiltered?.map((category, i, { length }) => {
-                let categoryComponent = <Category key={category.id} id={category.id} category={category} setChatHeader={setChatHeader} setCategoryId={setCategoryId} />;
+                let categoryComponent = <Category key={category.id} id={category.id} category={category} refreshMessagesList={refreshMessagesList} />;
                 if (i === 0) {
                   categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef, first: true });
                 }
