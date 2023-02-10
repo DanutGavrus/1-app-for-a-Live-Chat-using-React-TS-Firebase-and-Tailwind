@@ -1,6 +1,6 @@
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import LiveChatWrapper from "./pages/livechat/LiveChatWrapper";
+import LiveChatPage from "./pages/LiveChatPage";
 import SignIn from "./pages/SignIn";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./scripts/firebase";
@@ -15,7 +15,7 @@ function App() {
           {loading && <p className="text-3xl text-center px-6 font-bold text-[var(--color-accent)]">Loading...</p>}
           {error && <p className="text-3xl text-center px-6 font-bold text-[var(--color-accent)]">Something went wrong. Error: {error.message}.</p>}
           {!loading && !error && !user && <SignIn />}
-          {user && <LiveChatWrapper />}
+          {user && <LiveChatPage />}
         </>
       } />
     </Route >

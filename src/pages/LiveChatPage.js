@@ -1,12 +1,11 @@
 import { useOutletContext } from "react-router-dom";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { auth, firestore } from "../../scripts/firebase";
+import { auth, firestore } from "../scripts/firebase";
 import { query, collection, orderBy } from "firebase/firestore";
 import { signOut } from "firebase/auth";
-import LiveChat from "./LiveChat";
+import LiveChat from "../components/LiveChat";
 
-// TODO: Messages pagination
-export default function LiveChatWrapper() {
+export default function LiveChatPage() {
   const user = useOutletContext();
 
   const handleSignOut = () => {
