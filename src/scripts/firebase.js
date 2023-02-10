@@ -22,6 +22,7 @@ const signIn = () => {
 };
 
 // Get Firestore db
+// TODO: Get firestore db only if we have a user?
 const firestore = getFirestore(app);
 
 export { auth, signIn, firestore };
