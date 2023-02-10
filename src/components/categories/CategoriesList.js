@@ -1,14 +1,9 @@
 import { cloneElement, useCallback, useState } from "react";
-import { useRef, useEffect, useLayoutEffect } from "react";
+import { useRef, useLayoutEffect } from "react";
 import Category from "./Category";
-import { useCollection } from "react-firebase-hooks/firestore";
-import { firestore } from "../../scripts/firebase";
-import { query, collection, orderBy } from "firebase/firestore";
 import SearchBar from "../SearchBar";
 
-export default function CategoriesList({ refreshMessagesList }) {
-  const [categoriesListCollection, loading, error] = useCollection(query(collection(firestore, "categoriesList"), orderBy("timestamp")));
-  const [categoriesList, setCategoriesList] = useState([]);
+export default function CategoriesList({ categoriesList, setCategoryId, setChatHeader }) {
   const [categoriesFiltered, setCategoriesFiltered] = useState(categoriesList);
 
   const scrollDownBtn = useRef();
@@ -16,16 +11,6 @@ export default function CategoriesList({ refreshMessagesList }) {
   const scrollUpBtn = useRef();
   const firstCategoryRef = useRef();
   const categoriesListRef = useRef();
-
-  useEffect(() => {
-    if (categoriesListCollection?.docs?.length > 0) {
-      const categoriesList = categoriesListCollection.docs.map((doc) => {
-        return { id: doc.id, ...doc.data() }
-      })
-      setCategoriesList(categoriesList);
-      setCategoriesFiltered(categoriesList);
-    }
-  }, [categoriesListCollection]);
 
   const onSearchTextChanged = (searchText) => {
     if (searchText?.length > 0) {
@@ -88,29 +73,29 @@ export default function CategoriesList({ refreshMessagesList }) {
   return (
     <>
       <SearchBar placeholder="Search categories ..." onSearchTextChanged={onSearchTextChanged} />
-      {loading && !error && <p className="mt-6 px-3 text-center font-bold text-[var(--color-accent)]">Loading...</p>}
-      {!loading && error && <p className="mt-6 px-3 text-center font-bold text-[var(--color-accent)]">Something went wrong. Please check your internet connection or try again later.</p>}
-      {!loading && !error &&
-        <>
-          <button ref={scrollUpBtn} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
-          {categoriesFiltered?.length > 0 &&
-            <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
-              {categoriesFiltered?.map((category, i, { length }) => {
-                let categoryComponent = <Category key={category.id} id={category.id} category={category} refreshMessagesList={refreshMessagesList} />;
-                if (i === 0) {
-                  categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef, first: true });
-                }
-                if (i === length - 1) {
-                  categoryComponent = cloneElement(categoryComponent, { innerRef: lastCategoryRef, last: true });
-                }
-                return categoryComponent;
-              })}
-            </ul>
-          }
-          {categoriesFiltered?.length === 0 && <p className="mt-6 px-3 text-center">Sorry, there is no matching category name for this search.</p>}
-          <button ref={scrollDownBtn} onClick={scrollCategoriesBottom} className="h-6 invisible font-mono">{"↓"}</button>
-        </>
-      }
+      <>
+        <button ref={scrollUpBtn} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
+
+        {categoriesFiltered?.length > 0 &&
+          <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
+            {categoriesFiltered?.map((category, i, { length }) => {
+              let categoryComponent = <Category key={category.id} id={category.id} category={category} setCategoryId={setCategoryId} setChatHeader={setChatHeader} />;
+              if (i === 0) {
+                categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef, first: true });
+              }
+              if (i === length - 1) {
+                categoryComponent = cloneElement(categoryComponent, { innerRef: lastCategoryRef, last: true });
+              }
+              return categoryComponent;
+            })}
+          </ul>
+        }
+        {categoriesFiltered?.length === 0 &&
+          <p className="px-3 text-center">Sorry, there is no matching category name for this search.</p>
+        }
+
+        <button ref={scrollDownBtn} onClick={scrollCategoriesBottom} className="h-6 invisible font-mono">{"↓"}</button>
+      </>
     </>
   );
 }
