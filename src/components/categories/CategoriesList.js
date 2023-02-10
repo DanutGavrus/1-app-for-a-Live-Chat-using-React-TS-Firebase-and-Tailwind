@@ -76,6 +76,9 @@ export default function CategoriesList({ categoriesList, setCategoryId, setChatH
       <>
         <button ref={scrollUpBtn} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
 
+        {categoriesFiltered?.length === 0 &&
+          <p className="px-3 text-center">Sorry, there is no matching category name for this search.</p>
+        }
         {categoriesFiltered?.length > 0 &&
           <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
             {categoriesFiltered?.map((category, i, { length }) => {
@@ -89,9 +92,6 @@ export default function CategoriesList({ categoriesList, setCategoryId, setChatH
               return categoryComponent;
             })}
           </ul>
-        }
-        {categoriesFiltered?.length === 0 &&
-          <p className="px-3 text-center">Sorry, there is no matching category name for this search.</p>
         }
 
         <button ref={scrollDownBtn} onClick={scrollCategoriesBottom} className="h-6 invisible font-mono">{"↓"}</button>
