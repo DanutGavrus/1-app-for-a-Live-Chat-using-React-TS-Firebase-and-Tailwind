@@ -6,8 +6,8 @@ import LiveChat from "../components/LiveChat";
 
 export default function LiveChatPage() {
   const context = useOutletContext();
-  const app = context.app;
-  const user = context.user;
+  const app = context?.app;
+  const user = context?.user;
 
   const handleSignOut = () => {
     signOut(getAuth(app));
