@@ -42,7 +42,6 @@ function App() {
 
 export default App;
 
-// TODO: Add custom error page
 // TODO: Get firestore db only if we have a user?
 // TODO: Firestore security for calls
 // TODO: BUG Some iOS users may not login
