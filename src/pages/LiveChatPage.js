@@ -1,18 +1,19 @@
 import { useOutletContext } from "react-router-dom";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { auth, firestore } from "../scripts/firebase";
-import { query, collection, orderBy } from "firebase/firestore";
-import { signOut } from "firebase/auth";
+import { query, collection, orderBy, getFirestore } from "firebase/firestore";
+import { getAuth, signOut } from "firebase/auth";
 import LiveChat from "../components/LiveChat";
 
 export default function LiveChatPage() {
-  const user = useOutletContext();
+  const context = useOutletContext();
+  const app = context?.app;
+  const user = context?.user;
 
   const handleSignOut = () => {
-    signOut(auth);
+    signOut(getAuth(app));
   }
 
-  const [categoriesListCollection, loading, error] = useCollection(query(collection(firestore, "categoriesList"), orderBy("timestamp")));
+  const [categoriesListCollection, loading, error] = useCollection(query(collection(getFirestore(app), "categoriesList"), orderBy("timestamp")));
   const categoriesList = categoriesListCollection?.docs?.map((doc) => {
     return { id: doc.id, ...doc.data() }
   });
