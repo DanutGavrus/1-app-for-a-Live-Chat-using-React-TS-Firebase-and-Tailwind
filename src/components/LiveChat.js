@@ -1,17 +1,20 @@
 import { useState } from "react";
-import { collection, orderBy, query, where } from "firebase/firestore";
+import { collection, getFirestore, orderBy, query, where } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { firestore } from "../scripts/firebase";
 import CategoriesList from "./categories/CategoriesList";
 import Message from "./messages/Message";
 import MessagesBar from "./messages/MessagesBar";
+import { useOutletContext } from "react-router-dom";
 
 // TODO: Messages pagination
 export default function LiveChat({ categoriesList }) {
+  const context = useOutletContext();
+  const app = context.app;
+
   const [categoryId, setCategoryId] = useState(categoriesList[0].id);
   const [chatHeader, setChatHeader] = useState(categoriesList[0].unicode + " " + categoriesList[0].title);
 
-  const messagesListDb = collection(firestore, "messagesList");
+  const messagesListDb = collection(getFirestore(app), "messagesList");
   const [messagesListCollection, loading, error] = useCollection(query(messagesListDb, where("categoryId", "==", categoryId), orderBy("timestamp")));
   const messagesList = messagesListCollection?.docs?.map((doc) => {
     return { id: doc.id, ...doc.data() }
@@ -29,7 +32,7 @@ export default function LiveChat({ categoriesList }) {
         {!loading && !error && messagesList &&
           <>
             {messagesList?.length === 0 &&
-              <p className="px-6 py-1 text-center font-bold text-[var(--color-accent)]">There are no messages for this category yet. Be the first to leave a new one!</p>
+              <p className="my-auto px-6 py-1 text-center font-bold text-[var(--color-accent)]">There are no messages for this category yet. Be the first to leave a new one!</p>
             }
             {messagesList?.length > 0 &&
               <ul>

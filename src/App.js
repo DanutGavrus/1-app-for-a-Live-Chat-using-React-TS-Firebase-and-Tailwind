@@ -1,15 +1,22 @@
+import { initializeApp } from "firebase/app";
+import { firebaseConfig, checkForSignInErrors } from "./scripts/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { getAuth } from "firebase/auth";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import LiveChatPage from "./pages/LiveChatPage";
 import SignIn from "./pages/SignIn";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "./scripts/firebase";
+import LiveChatPage from "./pages/LiveChatPage";
 
 function App() {
-  const [user, loading, error] = useAuthState(auth);
+  const app = initializeApp(firebaseConfig);
+
+  const [user, loading, error] = useAuthState(getAuth(app));
+  if (!loading && !error && !user) {
+    checkForSignInErrors(app);
+  }
 
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<RootLayout user={user} />}>
+    <Route path="/" element={<RootLayout app={app} user={user} />}>
       <Route index element={
         <>
           {loading && <p className="text-3xl text-center px-6 font-bold text-[var(--color-accent)]">Loading...</p>}
@@ -27,3 +34,6 @@ function App() {
 }
 
 export default App;
+
+// TODO: Add custom error page
+// TODO: Add custom 404 page
