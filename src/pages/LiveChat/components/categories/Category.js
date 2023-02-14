@@ -1,4 +1,4 @@
-export default function Category({ id, category, setCategoryId, setChatHeader, innerRef, last }) {
+export default function Category({ category, setCategoryId, setChatHeader, innerRef, last }) {
   const chatHeader = category.unicode + " " + category.title;
 
   const updateChat = (categoryId, chatHeader) => {
@@ -12,7 +12,7 @@ export default function Category({ id, category, setCategoryId, setChatHeader, i
   }
 
   return (
-    <li ref={innerRef} onClick={() => { updateChat(id, chatHeader) }} className={liClassName}>
+    <li ref={innerRef} onClick={() => { updateChat(category.id, chatHeader) }} className={liClassName}>
       <h1>{chatHeader}</h1>
       <p className="font-thin font-[system-ui]">{category.description}</p>
     </li>
