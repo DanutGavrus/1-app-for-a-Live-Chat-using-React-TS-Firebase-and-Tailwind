@@ -33,6 +33,7 @@ export default function LiveChat({ categoriesList }) {
       <div className="flex flex-col overflow-y-hidden relative">
         <CategoriesList categoriesList={categoriesList} setCategoryId={setCategoryId} setChatHeader={setChatHeader} />
       </div>
+
       <div ref={messagesListRef} className="relative overflow-y-scroll scrollbar-fancy flex flex-col rounded-l-xl rounded-r-md col-span-3 bg-black bg-opacity-5">
         <h1 className="sticky top-0 py-6 text-center text-2xl backdrop-blur-sm">{chatHeader}</h1>
         {loading && <Loading classNameToAdd="my-auto text-2xl" />}
