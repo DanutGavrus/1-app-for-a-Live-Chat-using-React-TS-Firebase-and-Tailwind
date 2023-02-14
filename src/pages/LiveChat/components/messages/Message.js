@@ -1,7 +1,8 @@
 import { useOutletContext } from "react-router-dom";
 
 export default function Message({ message }) {
-  const user = useOutletContext();
+  const context = useOutletContext();
+  const user = context.user;
 
   let pClassName = "block w-fit max-w-[75%] bg-gradient-to-br from-color-second-to-main px-3 py-1 rounded-2xl";
   let liClassName = "mb-1 mx-3";
