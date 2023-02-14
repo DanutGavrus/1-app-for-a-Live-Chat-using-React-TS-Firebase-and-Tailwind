@@ -4,9 +4,10 @@ import { getAuth } from "firebase/auth";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
 import SignIn from "./pages/SignIn";
-import LiveChatPage from "./pages/LiveChatPage";
+import LiveChatPage from "./pages/LiveChat/LiveChatPage";
 import NotFound from "./pages/NotFound";
-import LiveChatError from "./pages/LiveChatError";
+import Error from "./reusable-components/Error";
+import Loading from "./reusable-components/Loading";
 
 function App() {
   const app = initializeApp({
@@ -23,10 +24,10 @@ function App() {
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<RootLayout app={app} user={user} />}>
-      <Route index errorElement={<LiveChatError />} element={
+      <Route index errorElement={<Error />} element={
         <>
-          {loading && <p className="text-3xl text-center px-6 font-bold text-[var(--color-accent)]">Loading...</p>}
-          {error && <p className="text-3xl text-center px-6 font-bold text-[var(--color-accent)]">Something went wrong. Error: {error.message}.</p>}
+          {loading && <Loading />}
+          {error && <Error error={error} />}
           {!loading && !error && !user && <SignIn />}
           {user && <LiveChatPage />}
         </>
@@ -42,6 +43,3 @@ function App() {
 
 export default App;
 
-// TODO: Get firestore db only if we have a user?
-// TODO: Firestore security for calls
-// TODO: BUG Some iOS users may not login

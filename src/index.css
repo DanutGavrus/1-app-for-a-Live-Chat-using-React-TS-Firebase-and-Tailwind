@@ -2,14 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 /* TAILWIND EXTENSIONS */
 .from-color-second-to-main {
   --tw-gradient-stops: var(--color-second), var(--color-main);
 }
-
-
 
 /* COLOR PALETTE */
 :root {
@@ -34,8 +30,6 @@
   --bg-color: var(--color-main);
 }
 
-
-
 /* PAGE SCROLLBAR */
 .scrollbar-fancy::-webkit-scrollbar {
   width: 0.5rem;
@@ -53,6 +47,16 @@
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* PAGE */
+p, h1, h2, h3, h4, h5, h6 {
+  padding-left: 0.75rem/* 12px */;
+  padding-right: 0.75rem/* 12px */;
+}
+
+button {
+  padding: 0.25rem/* 4px */;
 }
 
 /* TODO: Light/dark mode switcher */
