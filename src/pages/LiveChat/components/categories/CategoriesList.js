@@ -3,12 +3,12 @@ import { useRef, useLayoutEffect } from "react";
 import Category from "./Category";
 import SearchBar from "../../../../reusable-components/SearchBar";
 
-export default function CategoriesList({ categoriesList, setCategoryId, setChatHeader }) {
+export default function CategoriesList({ categoriesList, setCategoryId, setChatHeader, toggleShowCategories }) {
   const [categoriesFiltered, setCategoriesFiltered] = useState(categoriesList);
 
-  const scrollDownBtn = useRef();
+  const scrollDownBtnRef = useRef();
   const lastCategoryRef = useRef();
-  const scrollUpBtn = useRef();
+  const scrollUpBtnRef = useRef();
   const firstCategoryRef = useRef();
   const categoriesListRef = useRef();
 
@@ -47,16 +47,16 @@ export default function CategoriesList({ categoriesList, setCategoryId, setChatH
 
   const toggleScrollBtnVisibility = (position) => {
     if (position === "bottom") {
-      scrollDownBtn.current?.classList.add("invisible");
-      scrollUpBtn.current?.classList.remove("invisible");
+      scrollDownBtnRef.current?.classList.add("invisible");
+      scrollUpBtnRef.current?.classList.remove("invisible");
     }
     else if (position === "top") {
-      scrollUpBtn.current?.classList.add("invisible");
-      scrollDownBtn.current?.classList.remove("invisible");
+      scrollUpBtnRef.current?.classList.add("invisible");
+      scrollDownBtnRef.current?.classList.remove("invisible");
     }
     else if (position === "none") {
-      scrollUpBtn.current?.classList.add("invisible");
-      scrollDownBtn.current?.classList.add("invisible");
+      scrollUpBtnRef.current?.classList.add("invisible");
+      scrollDownBtnRef.current?.classList.add("invisible");
     }
   };
 
@@ -74,13 +74,13 @@ export default function CategoriesList({ categoriesList, setCategoryId, setChatH
     <>
       <SearchBar placeholder="Search categories ..." onSearchTextChanged={onSearchTextChanged} />
       <>
-        <button ref={scrollUpBtn} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
+        <button ref={scrollUpBtnRef} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
 
         {categoriesFiltered?.length === 0 && <p className="text-center">Sorry, there is no matching category for this search.</p>}
         {categoriesFiltered?.length > 0 &&
           <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
             {categoriesFiltered?.map((category, i, { length }) => {
-              let categoryComponent = <Category key={category.id} category={category} setCategoryId={setCategoryId} setChatHeader={setChatHeader} />;
+              let categoryComponent = <Category key={category.id} category={category} setCategoryId={setCategoryId} setChatHeader={setChatHeader} toggleShowCategories={toggleShowCategories} />;
               if (i === 0) {
                 categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef });
               }
@@ -92,7 +92,7 @@ export default function CategoriesList({ categoriesList, setCategoryId, setChatH
           </ul>
         }
 
-        <button ref={scrollDownBtn} onClick={scrollCategoriesBottom} className="h-6 invisible font-mono">{"↓"}</button>
+        <button ref={scrollDownBtnRef} onClick={scrollCategoriesBottom} className="h-6 invisible font-mono">{"↓"}</button>
       </>
     </>
   );

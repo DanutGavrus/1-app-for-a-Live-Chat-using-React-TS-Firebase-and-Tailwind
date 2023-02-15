@@ -1,9 +1,10 @@
-export default function Category({ category, setCategoryId, setChatHeader, innerRef, last }) {
+export default function Category({ category, setCategoryId, setChatHeader, toggleShowCategories, innerRef, last }) {
   const chatHeader = category.unicode + " " + category.title;
 
   const updateChat = (categoryId, chatHeader) => {
     setCategoryId(categoryId);
     setChatHeader(chatHeader);
+    toggleShowCategories();
   }
 
   let liClassName = "pl-3 hover:cursor-pointer";

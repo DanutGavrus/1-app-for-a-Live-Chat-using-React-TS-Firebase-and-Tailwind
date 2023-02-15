@@ -53,6 +53,7 @@
 p, h1, h2, h3, h4, h5, h6 {
   padding-left: 0.75rem/* 12px */;
   padding-right: 0.75rem/* 12px */;
+  overflow-wrap: break-word;
 }
 
 button {
@@ -61,4 +62,3 @@ button {
 
 /* TODO: Light/dark mode switcher */
 /* TODO: Move color palette to tailwind config */
-/* TODO: Mobile UI */
