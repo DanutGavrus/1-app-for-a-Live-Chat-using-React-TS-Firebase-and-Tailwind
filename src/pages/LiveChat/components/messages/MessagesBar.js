@@ -29,9 +29,9 @@ export default function MessagesBar({ categoryId, messagesListDb }) {
 
   return (
     <div className="mt-auto sticky bottom-0 grid grid-cols-12">
-      <input ref={messageInputRef} type="text" maxLength="500" onKeyDown={(e) => handleSendMessage(e.key)} onChange={(e) => { setMessageContent(e.target.value) }} placeholder="Send a message..." className="h-10 col-span-10 sm:col-span-11 pl-3 rounded-bl-xl box-border border border-transparent focus:outline-none focus:border-[var(--color-accent)]" />
-      {messageContent.length === 0 && <button className="h-10 bg-[var(--color-aux)] rounded-tr-xl col-span-2 sm:col-span-1">{"⇐"}</button>}
-      {messageContent.length > 0 && <button onClick={() => handleSendMessage('Enter')} className="h-10 bg-[var(--color-aux)] rounded-tr-xl col-span-1">{"⬀"}</button>}
+      <input ref={messageInputRef} type="text" maxLength="500" onKeyDown={(e) => handleSendMessage(e.key)} onChange={(e) => { setMessageContent(e.target.value) }} placeholder="Send a message..." className="h-10 col-span-10 sm:col-span-11 pl-3 rounded-bl-xl box-border border border-transparent focus:outline-none focus:border-accent dark:bg-black" />
+      {messageContent.length === 0 && <button className="h-10 bg-auxiliary rounded-tr-xl col-span-2 sm:col-span-1">{"⇐"}</button>}
+      {messageContent.length > 0 && <button onClick={() => handleSendMessage('Enter')} className="h-10 bg-auxiliary rounded-tr-xl col-span-2 sm:col-span-1">{"⬀"}</button>}
     </div>
   );
 }

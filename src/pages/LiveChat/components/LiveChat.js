@@ -60,7 +60,7 @@ export default function LiveChat({ categoriesList }) {
         </div>
         {loading && <Loading classNameToAdd="my-auto text-2xl" />}
         {error && <Error error={error} wrapperClassName="my-auto" />}
-        {!loading && !error && messagesList?.length === 0 && <p className="my-auto text-center font-bold text-[var(--color-accent)]">There are no messages for this category yet. Be the first to leave a new one!</p>}
+        {!loading && !error && messagesList?.length === 0 && <p className="my-auto text-center font-bold text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
         {!loading && !error && messagesList?.length > 0 &&
           <ul>
             {messagesList.map((message) => {
@@ -77,4 +77,4 @@ export default function LiveChat({ categoriesList }) {
 
 // TODO: Add messages pagination
 // TODO: Add remove message feature
-// TODO: Add edit message feature
+// TODO: Add edit message feature?
