@@ -1,18 +1,18 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-                primary: '#219EBC',
-                'primary-light': '#8ECAE6',
-                secondary: '#023047',
-                accent: '#FB8500',
-                'accent-light': '#FFB703',
-            },
-    },
-  },
-  plugins: [],
+        primary: "rgb(var(--color-primary) / <alpha-value>)",
+        secondary: "rgb(var(--color-secondary) / <alpha-value>)",
+        auxiliary: "rgb(var(--color-auxiliary) / <alpha-value>)",
+        accent: "rgb(var(--color-accent) / <alpha-value>)",
+        text: "rgb(var(--color-text) / <alpha-value>)"
+      }
+    }
+  }
 }

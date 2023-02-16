@@ -8,8 +8,11 @@ import LiveChatPage from "./pages/LiveChat/LiveChatPage";
 import NotFound from "./pages/NotFound";
 import Error from "./reusable-components/Error";
 import Loading from "./reusable-components/Loading";
+import { setTheme } from "./scripts/HandleTheme";
 
 function App() {
+  setTheme();
+
   const app = initializeApp({
     apiKey: "AIzaSyDIvHMVWikWd_YQgeDiZh3QtVa_LnLosHI",
     authDomain: "live-chat-bde08.firebaseapp.com",

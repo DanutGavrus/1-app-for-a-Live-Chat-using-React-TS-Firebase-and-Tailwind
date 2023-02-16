@@ -1,5 +1,5 @@
 export default function Loading({ classNameToAdd }) {
-  let className = "text-3xl text-center font-bold text-[var(--color-accent)]";
+  let className = "text-3xl text-center font-bold text-accent";
   if (classNameToAdd) {
     className += " " + classNameToAdd;
   }
