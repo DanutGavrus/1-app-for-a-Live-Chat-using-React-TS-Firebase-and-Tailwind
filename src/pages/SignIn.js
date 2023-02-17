@@ -13,5 +13,3 @@ export default function SignIn() {
     <p className="text-2xl md:text-3xl text-center">👋 Hi, please <button onClick={handleSignIn} className="font-bold text-accent underline">sign in</button> with Google to use this live-chat! 👋</p>
   );
 }
-
-// TODO: BUG Some iOS users may not login, maybe add another sign-in option?

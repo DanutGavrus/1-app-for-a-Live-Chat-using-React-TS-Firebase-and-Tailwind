@@ -22,8 +22,10 @@ export default function LiveChat({ categoriesList }) {
   });
 
   const messagesListRef = useRef();
+  const messagesListActionRef = useRef({ action: "added" }); // added or deleted
   useEffect(() => {
-    if (messagesList?.length > 0) {
+    // For "deleted" we do not want to automatically scroll to bottom
+    if (messagesListActionRef?.current.action === "added") {
       messagesListRef?.current?.scrollTo(0, messagesListRef?.current?.scrollHeight);
     }
   }, [messagesList]);
@@ -64,17 +66,15 @@ export default function LiveChat({ categoriesList }) {
         {!loading && !error && messagesList?.length > 0 &&
           <ul>
             {messagesList.map((message) => {
-              return <Message key={message.id} message={message} />
+              return <Message key={message.id} message={message} messagesListDb={messagesListDb} messagesListActionRef={messagesListActionRef} />
             })}
           </ul>
         }
 
-        <MessagesBar categoryId={categoryId} messagesListDb={messagesListDb} messagesListRef={messagesListRef} />
+        <MessagesBar categoryId={categoryId} messagesListDb={messagesListDb} messagesListActionRef={messagesListActionRef} />
       </div>
     </>
   );
 }
 
 // TODO: Add messages pagination
-// TODO: Add remove message feature
-// TODO: Add edit message feature?

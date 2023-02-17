@@ -22,7 +22,7 @@ export default function LiveChatPage() {
 
   return (
     <>
-      <p className="text-3xl text-center">👋 Hi, {user?.displayName?.split(" ")[0]}! 👋</p>
+      <p className="text-3xl text-center">👋 Hi, {user?.displayName}! 👋</p>
       <button onClick={handleSignOut} className="mx-auto text-xs font-bold text-accent underline">Sign out</button>
       <div className="mt-10 h-[60vh] w-[90vw] min-h-[250px] max-h-[500px] min-w-[280px] sm:min-w-[500px] max-w-[1000px] rounded-l-xl rounded-r-md grid grid-cols-4 mx-auto bg-gradient-to-br from-secondary to-primary">
         {loading && <Loading classNameToAdd="col-span-4 my-auto" />}

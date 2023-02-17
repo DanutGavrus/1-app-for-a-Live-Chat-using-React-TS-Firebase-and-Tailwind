@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { useOutletContext } from "react-router-dom";
 import { addDoc, serverTimestamp } from "firebase/firestore";
 
-export default function MessagesBar({ categoryId, messagesListDb }) {
+export default function MessagesBar({ categoryId, messagesListDb, messagesListActionRef }) {
   const context = useOutletContext();
   const user = context.user;
 
@@ -24,6 +24,7 @@ export default function MessagesBar({ categoryId, messagesListDb }) {
 
       setMessageContent("");
       messageInputRef.current.value = "";
+      messagesListActionRef.current.action = "added";
     }
   }
 
