@@ -64,7 +64,7 @@ export default function LiveChat({ categoriesList }) {
         {!loading && !error && messagesList?.length > 0 &&
           <ul>
             {messagesList.map((message) => {
-              return <Message key={message.id} message={message} />
+              return <Message key={message.id} message={message} messagesListDb={messagesListDb} />
             })}
           </ul>
         }
@@ -76,5 +76,3 @@ export default function LiveChat({ categoriesList }) {
 }
 
 // TODO: Add messages pagination
-// TODO: Add remove message feature
-// TODO: Add edit message feature?
