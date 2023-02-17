@@ -1,7 +1,7 @@
 import { deleteDoc, doc } from "firebase/firestore";
 import { useOutletContext } from "react-router-dom";
 
-export default function Message({ message, messagesListDb }) {
+export default function Message({ message, messagesListDb, messagesListActionRef }) {
   const context = useOutletContext();
   const user = context?.user;
 
@@ -13,6 +13,7 @@ export default function Message({ message, messagesListDb }) {
 
   const handleDeleteMessage = () => {
     deleteDoc(doc(messagesListDb, message.id));
+    messagesListActionRef.current.action = "deleted";
   }
 
   return (
