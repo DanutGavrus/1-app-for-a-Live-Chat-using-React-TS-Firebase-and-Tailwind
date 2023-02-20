@@ -14,7 +14,7 @@ export default function Category({ category, setCategoryId, setChatHeader, toggl
 
   return (
     <li ref={innerRef} onClick={() => { updateChat(category.id, chatHeader) }} className={liClassName}>
-      <h1>{chatHeader}</h1>
+      <h4>{chatHeader}</h4>
       <p className="font-thin font-[system-ui]">{category.description}</p>
     </li>
   );
