@@ -23,6 +23,43 @@
     @apply px-3;
     @apply break-words;
   }
+
+  h1 {
+    @apply text-center;
+    @apply text-xl;
+    @apply sm:text-2xl;
+    @apply md:text-3xl;
+  }
+
+  h2 {
+    @apply text-center;
+    @apply text-lg;
+    @apply sm:text-xl;
+    @apply md:text-2xl;
+  }
+
+  h3 {
+    @apply text-base;
+    @apply sm:text-lg;
+    @apply md:text-xl;
+  }
+
+  h4 {
+    @apply text-sm;
+    @apply sm:text-base;
+    @apply md:text-lg;
+  }
+
+  p {
+    @apply text-xs;
+    @apply sm:text-sm;
+    @apply md:text-base;
+  }
+
+  span {
+    @apply font-bold;
+    @apply text-accent;
+  }
   
   button {
     @apply p-1;

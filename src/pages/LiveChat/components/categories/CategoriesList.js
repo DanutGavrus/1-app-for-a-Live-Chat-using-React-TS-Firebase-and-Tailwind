@@ -76,7 +76,7 @@ export default function CategoriesList({ categoriesList, setCategoryId, setChatH
       <>
         <button ref={scrollUpBtnRef} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
 
-        {categoriesFiltered?.length === 0 && <p className="text-center">Sorry, there is no matching category for this search.</p>}
+        {categoriesFiltered?.length === 0 && <h4 className="text-center">Sorry, there is no matching category for this search.</h4>}
         {categoriesFiltered?.length > 0 &&
           <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
             {categoriesFiltered?.map((category, i, { length }) => {

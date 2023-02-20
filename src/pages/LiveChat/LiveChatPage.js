@@ -22,10 +22,10 @@ export default function LiveChatPage() {
 
   return (
     <>
-      <p className="text-3xl text-center">👋 Hi, {user?.displayName}! 👋</p>
-      <button onClick={handleSignOut} className="mx-auto text-xs font-bold text-accent underline">Sign out</button>
+      <h1>👋 Hi, {user?.displayName}! 👋</h1>
+      <button onClick={handleSignOut} className="mx-auto font-bold text-xs text-accent underline">Sign out</button>
       <div className="mt-10 h-[60vh] w-[90vw] min-h-[250px] max-h-[500px] min-w-[280px] sm:min-w-[500px] max-w-[1000px] rounded-l-xl rounded-r-md grid grid-cols-4 mx-auto bg-gradient-to-br from-secondary to-primary">
-        {loading && <Loading classNameToAdd="col-span-4 my-auto" />}
+        {loading && <Loading wrapperClassNameToAdd="col-span-4 my-auto" />}
         {error && <Error error={error} wrapperClassName="col-span-4 my-auto" />}
         {!loading && !error && categoriesList.length === 0 && <Error error={{ message: "There are no categories, please contact the administrator!" }} wrapperClassName="col-span-4 my-auto" />}
         {!loading && !error && categoriesList.length > 0 && <LiveChat categoriesList={categoriesList} />}
