@@ -1,12 +1,11 @@
+import { useOutletContext } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { collection, getFirestore, orderBy, query, where } from "firebase/firestore";
 import { useCollection } from "react-firebase-hooks/firestore";
 import CategoriesList from "./categories/CategoriesList";
-import Message from "./messages/Message";
-import MessagesBar from "./messages/MessagesBar";
-import { useOutletContext } from "react-router-dom";
-import Loading from "../../../reusable-components/Loading";
+import Loading from "../../../reusable-components/Loading"
 import Error from "../../../reusable-components/Error";
+import MessagesList from "./messages/MessagesList";
 
 export default function LiveChat({ categoriesList }) {
   const context = useOutletContext();
@@ -21,17 +20,9 @@ export default function LiveChat({ categoriesList }) {
     return { id: doc.id, ...doc.data() }
   });
 
-  const messagesListRef = useRef();
-  const messagesListActionRef = useRef({ action: "added" }); // added or deleted
-  useEffect(() => {
-    // For "deleted" we do not want to automatically scroll to bottom
-    if (messagesListActionRef?.current.action === "added") {
-      messagesListRef?.current?.scrollTo(0, messagesListRef?.current?.scrollHeight);
-    }
-  }, [messagesList]);
-
   const categoriesBtnRef = useRef();
   const cateogiresListRef = useRef();
+  const messagesListRef = useRef();
   const toggleShowCategories = () => {
     if (cateogiresListRef?.current?.classList?.contains("hidden")) {
       cateogiresListRef.current.classList.remove("hidden");
@@ -62,19 +53,9 @@ export default function LiveChat({ categoriesList }) {
         </div>
         {loading && <Loading wrapperClassNameToAdd="my-auto" />}
         {error && <Error error={error} wrapperClassName="my-auto" />}
-        {!loading && !error && messagesList?.length === 0 && <p className="my-auto font-bold text-center text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
-        {!loading && !error && messagesList?.length > 0 &&
-          <ul>
-            {messagesList.map((message) => {
-              return <Message key={message.id} message={message} messagesListDb={messagesListDb} messagesListActionRef={messagesListActionRef} />
-            })}
-          </ul>
-        }
-
-        <MessagesBar categoryId={categoryId} messagesListDb={messagesListDb} messagesListActionRef={messagesListActionRef} />
+        {!loading && !error && messagesList.length === 0 && <p className="my-auto font-bold text-center text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
+        {!loading && !error && messagesList.length > 0 && <MessagesList categoryId={categoryId} messagesList={messagesList} messagesListRef={messagesListRef} messagesListDb={messagesListDb} />}
       </div>
     </>
   );
 }
-
-// TODO: Add messages pagination
