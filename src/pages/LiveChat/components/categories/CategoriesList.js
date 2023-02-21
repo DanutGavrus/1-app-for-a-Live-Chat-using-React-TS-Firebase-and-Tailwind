@@ -3,7 +3,7 @@ import { useRef, useLayoutEffect } from "react";
 import Category from "./Category";
 import SearchBar from "../../../../reusable-components/SearchBar";
 
-export default function CategoriesList({ categoriesList, setCategoryId, setChatHeader, toggleShowCategories }) {
+export default function CategoriesList({ innerRef, categoriesList, setCategoryId, setChatHeader, toggleShowCategories }) {
   const [categoriesFiltered, setCategoriesFiltered] = useState(categoriesList);
 
   const scrollDownBtnRef = useRef();
@@ -71,7 +71,7 @@ export default function CategoriesList({ categoriesList, setCategoryId, setChatH
   };
 
   return (
-    <>
+    <div ref={innerRef} className="relative flex sm:flex flex-col col-span-4 sm:col-span-1 overflow-y-hidden">
       <SearchBar placeholder="Search categories ..." onSearchTextChanged={onSearchTextChanged} />
       <>
         <button ref={scrollUpBtnRef} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
@@ -94,6 +94,6 @@ export default function CategoriesList({ categoriesList, setCategoryId, setChatH
 
         <button ref={scrollDownBtnRef} onClick={scrollCategoriesBottom} className="h-6 invisible font-mono">{"↓"}</button>
       </>
-    </>
+    </div>
   );
 }

@@ -42,19 +42,17 @@ export default function LiveChat({ categoriesList }) {
 
   return (
     <>
-      <div ref={cateogiresListRef} className="relative flex sm:flex flex-col col-span-4 sm:col-span-1 overflow-y-hidden">
-        <CategoriesList categoriesList={categoriesList} setCategoryId={setCategoryId} setChatHeader={setChatHeader} toggleShowCategories={toggleShowCategories} />
-      </div>
+      <CategoriesList innerRef={cateogiresListRef} categoriesList={categoriesList} setCategoryId={setCategoryId} setChatHeader={setChatHeader} toggleShowCategories={toggleShowCategories} />
 
       <div ref={messagesListRef} className="relative hidden sm:flex flex-col col-span-4 sm:col-span-3 overflow-y-scroll scrollbar-fancy rounded-l-xl rounded-r-md bg-black bg-opacity-5">
         <div className="sticky top-0 py-4 sm:py-6 backdrop-blur-sm">
-          <button ref={categoriesBtnRef} onClick={toggleShowCategories} className="w-fit ml-6 p-0 visible sm:hidden">≡</button>
-          <h1 className="w-[87%] inline-block">{chatHeader}</h1>
+          <button ref={categoriesBtnRef} onClick={toggleShowCategories} className="w-fit ml-6 px-1 visible sm:hidden">≡</button>
+          <h1 className="w-[84%] inline-block">{chatHeader}</h1>
         </div>
+
         {loading && <Loading wrapperClassNameToAdd="my-auto" />}
         {error && <Error error={error} wrapperClassName="my-auto" />}
-        {!loading && !error && messagesList.length === 0 && <p className="my-auto font-bold text-center text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
-        {!loading && !error && messagesList.length > 0 && <MessagesList categoryId={categoryId} messagesList={messagesList} messagesListRef={messagesListRef} messagesListDb={messagesListDb} />}
+        {!loading && !error && <MessagesList categoryId={categoryId} messagesList={messagesList} messagesListRef={messagesListRef} messagesListDb={messagesListDb} />}
       </div>
     </>
   );
