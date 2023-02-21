@@ -11,7 +11,7 @@ export default function MessagesBar({ categoryId, messagesListDb, messagesListAc
   const messageInputRef = useRef();
 
   const handleSendMessage = (key) => {
-    if (key === 'Enter' && messageContent.length > 0 && messageContent[messageContent.length - 1] !== "\n") {
+    if (key === 'Enter' && messageContent.length > 0) {
       addDoc(messagesListDb, {
         categoryId: categoryId,
         userId: user.uid,
