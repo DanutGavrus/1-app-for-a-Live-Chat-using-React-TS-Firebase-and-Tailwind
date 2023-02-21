@@ -13,5 +13,3 @@ export default function Loading({ wrapperClassNameToAdd }) {
     </div>
   );
 }
-
-// TODO: Replace loading text with a spinner.
