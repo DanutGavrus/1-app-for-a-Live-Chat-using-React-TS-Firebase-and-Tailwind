@@ -15,7 +15,7 @@ export default function MessagesList({ categoryId, messagesList, messagesListRef
     <>
       {messagesList.length === 0 && <p className="my-auto font-bold text-center text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
       {messagesList.length > 0 &&
-        <ul>
+        <ul className="mb-auto">
           {messagesList.map((message) => {
             return <Message key={message.id} message={message} messagesListDb={messagesListDb} messagesListActionRef={messagesListActionRef} />
           })}

@@ -46,8 +46,8 @@ export default function LiveChat({ categoriesList }) {
 
       <div ref={messagesListRef} className="relative hidden sm:flex flex-col col-span-4 sm:col-span-3 overflow-y-scroll scrollbar-fancy rounded-l-xl rounded-r-md bg-black bg-opacity-5">
         <div className="sticky top-0 py-4 sm:py-6 backdrop-blur-sm">
-          <button ref={categoriesBtnRef} onClick={toggleShowCategories} className="w-fit ml-6 px-1 visible sm:hidden">≡</button>
-          <h1 className="w-[84%] inline-block">{chatHeader}</h1>
+          <button ref={categoriesBtnRef} onClick={toggleShowCategories} className="sm:hidden w-fit ml-6 px-1 visible">≡</button>
+          <h1 className="w-[84%] sm:w-[100%] inline-block">{chatHeader}</h1>
         </div>
 
         {loading && <Loading wrapperClassNameToAdd="my-auto" />}
