@@ -7,9 +7,7 @@ import Loading from "../../reusable-components/Loading";
 import Error from "../../reusable-components/Error";
 
 export default function LiveChatPage() {
-  const context = useOutletContext();
-  const app = context?.app;
-  const user = context?.user;
+  const { app, user } = useOutletContext();
 
   const handleSignOut = () => {
     signOut(getAuth(app));

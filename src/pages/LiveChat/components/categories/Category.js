@@ -1,5 +1,5 @@
 export default function Category({ category, setCategoryId, setChatHeader, toggleShowCategories, innerRef, last }) {
-  const chatHeader = category.unicode + " " + category.title;
+  const chatHeader = `${category.unicode} ${category.title}`;
 
   const updateChat = (categoryId, chatHeader) => {
     setCategoryId(categoryId);

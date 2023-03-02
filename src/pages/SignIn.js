@@ -2,8 +2,7 @@ import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth";
 import { useOutletContext } from "react-router-dom";
 
 export default function SignIn() {
-  const context = useOutletContext();
-  const app = context?.app;
+  const { app } = useOutletContext();
 
   const handleSignIn = () => {
     signInWithRedirect(getAuth(app), new GoogleAuthProvider());
