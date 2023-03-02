@@ -1,7 +1,7 @@
 export default function Loading({ wrapperClassNameToAdd }) {
   let wrapperClassName = "mx-auto";
   if (wrapperClassNameToAdd) {
-    wrapperClassName += " " + wrapperClassNameToAdd;
+    wrapperClassName += ` ${wrapperClassNameToAdd}`;
   }
 
   return (

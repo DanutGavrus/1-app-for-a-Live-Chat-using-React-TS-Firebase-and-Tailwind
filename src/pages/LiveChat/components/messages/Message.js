@@ -17,7 +17,7 @@ export default function Message({ message, messagesListDb, messagesListActionRef
 
   return (
     <li className={liClassName}>
-      <p className={pClassName}><img src={message.userIcon} alt="" className="w-4 h-4 mb-0.5 inline-block rounded-3xl" /> <a href={`mailto:${message.userEMail}`} target="_blank" rel="noreferrer" className="underline font-bold text-accent">{message.userDisplayName}</a>{": " + message.content}
+      <p className={pClassName}><img src={message.userIcon} alt="" className="w-4 h-4 mb-0.5 inline-block rounded-3xl" /> <a href={`mailto:${message.userEMail}`} target="_blank" rel="noreferrer" className="underline font-bold text-accent">{message.userDisplayName}</a>{`: ${message.content}`}
         {user.uid === message.userId && <button onClick={handleDeleteMessage} className="p-0 ml-1 text-accent text-sm font-bold">🗑</button>}
       </p>
     </li>
