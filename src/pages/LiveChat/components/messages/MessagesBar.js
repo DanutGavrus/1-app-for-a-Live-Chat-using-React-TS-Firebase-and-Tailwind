@@ -3,8 +3,7 @@ import { useOutletContext } from "react-router-dom";
 import { addDoc, serverTimestamp } from "firebase/firestore";
 
 export default function MessagesBar({ categoryId, messagesListDb, messagesListActionRef }) {
-  const context = useOutletContext();
-  const user = context?.user;
+  const { user } = useOutletContext();
 
   const [messageContent, setMessageContent] = useState("");
 

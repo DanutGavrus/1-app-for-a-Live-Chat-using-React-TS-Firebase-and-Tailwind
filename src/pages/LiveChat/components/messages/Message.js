@@ -2,8 +2,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { useOutletContext } from "react-router-dom";
 
 export default function Message({ message, messagesListDb, messagesListActionRef }) {
-  const context = useOutletContext();
-  const user = context?.user;
+  const { user } = useOutletContext();
 
   let liClassName = "mb-1 mx-3";
   let pClassName = "block w-fit max-w-[80%] bg-gradient-to-br from-secondary to-primary px-3 py-1 rounded-2xl";
