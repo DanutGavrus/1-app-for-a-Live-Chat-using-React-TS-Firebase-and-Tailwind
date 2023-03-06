@@ -10,7 +10,7 @@ const setTheme = () => {
   }
 }
 
-const setThemeToggleState = (toggle) => {
+const setThemeToggleState = (toggle: HTMLInputElement) => {
   if (localStorage.theme === "light") {
     toggle.checked = false;
   }
@@ -19,7 +19,7 @@ const setThemeToggleState = (toggle) => {
   }
 }
 
-const setExplicitTheme = (checked) => {
+const setExplicitTheme = (checked: boolean) => {
   if (!checked) {
     localStorage.theme = "light";
   }

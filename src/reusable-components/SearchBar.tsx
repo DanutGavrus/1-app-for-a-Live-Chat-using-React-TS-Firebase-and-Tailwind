@@ -6,7 +6,6 @@ type Props = {
 }
 
 export default function SearchBar({ placeholder, onSearchTextChanged }: Props) {
-
   const searchBarRef = useRef<HTMLInputElement>(null);
 
   const updateSearchText = (searchText: string) => {

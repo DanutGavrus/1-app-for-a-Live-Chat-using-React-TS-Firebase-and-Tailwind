@@ -19,7 +19,7 @@ function App() {
   const [user, loading, error] = useAuthState(getAuth(app));
 
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<RootLayout app={app} user={user} />}>
+    <Route path="/" errorElement={<Error />} element={<RootLayout app={app} user={user} />}>
       <Route index errorElement={<Error />} element={
         <>
           {loading && <Loading />}
@@ -29,7 +29,7 @@ function App() {
         </>
       } />
       <Route path="*" element={<NotFound />} />
-    </Route >
+    </Route>
   ))
 
   return (
