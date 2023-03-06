@@ -1,18 +1,27 @@
-import { cloneElement, useCallback, useState } from "react";
+import { cloneElement, LegacyRef, RefObject, useCallback, useState } from "react";
 import { useRef, useLayoutEffect } from "react";
 import Category from "./Category";
 import SearchBar from "../../../../reusable-components/SearchBar";
+import { CategoryType } from "../../LiveChatPage";
 
-export default function CategoriesList({ innerRef, categoriesList, setCategoryId, setChatHeader, toggleShowCategories }) {
+type Props = {
+  innerRef: RefObject<HTMLElement>,
+  categoriesList: CategoryType[],
+  setCategoryId: Function,
+  setChatHeader: Function,
+  toggleShowCategories: Function
+}
+
+export default function CategoriesList({ innerRef, categoriesList, setCategoryId, setChatHeader, toggleShowCategories }: Props) {
   const [categoriesFiltered, setCategoriesFiltered] = useState(categoriesList);
 
-  const scrollDownBtnRef = useRef();
-  const lastCategoryRef = useRef();
-  const scrollUpBtnRef = useRef();
-  const firstCategoryRef = useRef();
-  const categoriesListRef = useRef();
+  const scrollDownBtnRef = useRef<HTMLButtonElement>(null);
+  const lastCategoryRef = useRef<HTMLLIElement>(null);
+  const scrollUpBtnRef = useRef<HTMLButtonElement>(null);
+  const firstCategoryRef = useRef<HTMLLIElement>(null);
+  const categoriesListRef = useRef<HTMLUListElement>(null);
 
-  const onSearchTextChanged = (searchText) => {
+  const onSearchTextChanged = (searchText: string) => {
     if (searchText?.length > 0) {
       setCategoriesFiltered(categoriesList?.filter(category => category.title.toLowerCase().includes(searchText.toLowerCase())));
     } else {
@@ -22,7 +31,7 @@ export default function CategoriesList({ innerRef, categoriesList, setCategoryId
 
   const manageScrollBtnsVisibility = useCallback(() => {
     // Categories overflow
-    if (categoriesListRef?.current?.scrollHeight > categoriesListRef?.current?.clientHeight) {
+    if (categoriesListRef?.current && categoriesListRef?.current.scrollHeight > categoriesListRef?.current.clientHeight) {
       // Scrolled to bottom
       if (categoriesListRef?.current?.scrollHeight - Math.ceil(categoriesListRef?.current?.scrollTop) <= categoriesListRef?.current?.clientHeight) {
         toggleScrollBtnVisibility("bottom");
@@ -45,7 +54,7 @@ export default function CategoriesList({ innerRef, categoriesList, setCategoryId
     };
   }, [manageScrollBtnsVisibility, categoriesFiltered]);
 
-  const toggleScrollBtnVisibility = (position) => {
+  const toggleScrollBtnVisibility = (position: string) => {
     if (position === "bottom") {
       scrollDownBtnRef.current?.classList.add("invisible");
       scrollUpBtnRef.current?.classList.remove("invisible");
@@ -71,16 +80,16 @@ export default function CategoriesList({ innerRef, categoriesList, setCategoryId
   };
 
   return (
-    <div ref={innerRef} className="relative flex sm:flex flex-col col-span-4 sm:col-span-1 overflow-y-hidden">
+    <div ref={innerRef as LegacyRef<HTMLDivElement>} className="relative flex sm:flex flex-col col-span-4 sm:col-span-1 overflow-y-hidden">
       <SearchBar placeholder="Search categories ..." onSearchTextChanged={onSearchTextChanged} />
       <>
         <button ref={scrollUpBtnRef} onClick={scrollCategoriesTop} className="h-6 invisible font-mono">{"↑"}</button>
 
-        {categoriesFiltered?.length === 0 && <h4 className="text-center">Sorry, there is no matching category for this search.</h4>}
-        {categoriesFiltered?.length > 0 &&
+        {categoriesFiltered.length === 0 && <h4 className="text-center">Sorry, there is no matching category for this search.</h4>}
+        {categoriesFiltered.length > 0 &&
           <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
             {categoriesFiltered?.map((category, i, { length }) => {
-              let categoryComponent = <Category key={category.id} category={category} setCategoryId={setCategoryId} setChatHeader={setChatHeader} toggleShowCategories={toggleShowCategories} />;
+              let categoryComponent = <Category key={category.id} category={category} setCategoryId={setCategoryId} setChatHeader={setChatHeader} toggleShowCategories={toggleShowCategories} innerRef={null} last={null} />;
               if (i === 0) {
                 categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef });
               }

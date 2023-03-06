@@ -1,15 +1,8 @@
 import { useEffect, useRef } from "react";
 import { Outlet } from "react-router-dom";
 import { setExplicitTheme, setThemeToggleState } from "../scripts/theme";
-import { FirebaseApp } from "firebase/app";
-import { User } from "firebase/auth";
 
-type Props = {
-  app: FirebaseApp,
-  user: User | null | undefined
-}
-
-export default function RootLayout(context: Props) {
+export default function RootLayout(context: LiveChatContext) {
   const toggleThemeRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
