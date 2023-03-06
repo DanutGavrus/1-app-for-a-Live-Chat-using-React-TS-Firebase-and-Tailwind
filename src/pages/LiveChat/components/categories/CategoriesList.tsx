@@ -5,7 +5,7 @@ import SearchBar from "../../../../reusable-components/SearchBar";
 import { CategoryType } from "../../LiveChatPage";
 
 type Props = {
-  innerRef: RefObject<HTMLElement>,
+  innerRef: RefObject<HTMLDivElement>,
   categoriesList: CategoryType[],
   setCategoryId: Function,
   setChatHeader: Function,
@@ -89,7 +89,7 @@ export default function CategoriesList({ innerRef, categoriesList, setCategoryId
         {categoriesFiltered.length > 0 &&
           <ul ref={categoriesListRef} onScroll={manageScrollBtnsVisibility} className="scrollbar-hide overflow-y-scroll">
             {categoriesFiltered?.map((category, i, { length }) => {
-              let categoryComponent = <Category key={category.id} category={category} setCategoryId={setCategoryId} setChatHeader={setChatHeader} toggleShowCategories={toggleShowCategories} innerRef={null} last={null} />;
+              let categoryComponent = <Category key={category.id} category={category} setCategoryId={setCategoryId} setChatHeader={setChatHeader} toggleShowCategories={toggleShowCategories} />;
               if (i === 0) {
                 categoryComponent = cloneElement(categoryComponent, { innerRef: firstCategoryRef });
               }

@@ -6,8 +6,8 @@ type Props = {
   setCategoryId: Function,
   setChatHeader: Function,
   toggleShowCategories: Function,
-  innerRef: RefObject<HTMLLIElement> | null,
-  last: boolean | null
+  innerRef?: RefObject<HTMLLIElement>,
+  last?: boolean
 }
 
 export default function Category({ category, setCategoryId, setChatHeader, toggleShowCategories, innerRef, last }: Props) {

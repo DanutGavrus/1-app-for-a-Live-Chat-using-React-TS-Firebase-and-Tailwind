@@ -1,8 +1,8 @@
 import { useRouteError } from "react-router-dom";
 
 type Props = {
-  error: Error,
-  wrapperClassName: string
+  error?: Error,
+  wrapperClassName?: string
 }
 
 export default function Error({ error, wrapperClassName }: Props) {
@@ -12,8 +12,8 @@ export default function Error({ error, wrapperClassName }: Props) {
   return (
     <div className={wrapperClassName ? wrapperClassName : ""}>
       <h1 className="font-bold text-accent">Error!</h1>
-      <h3 className="text-center"><span>Msg: </span>{errorToShow.message}</h3>
-      {errorToShow.stack && <p className="mt-5 text-center"><span>Stack: </span>{errorToShow.stack}</p>}
+      <h3 className="text-center"><span>Msg: </span>{errorToShow?.message}</h3>
+      {errorToShow?.stack && <p className="mt-5 text-center"><span>Stack: </span>{errorToShow.stack}</p>}
     </div>
   );
 }
