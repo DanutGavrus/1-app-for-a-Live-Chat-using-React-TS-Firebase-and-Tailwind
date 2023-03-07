@@ -10,12 +10,12 @@ const setTheme = () => {
   }
 }
 
-const setThemeToggleState = (toggle: HTMLInputElement) => {
+const setThemeToggleState = (setChecked: any) => {
   if (localStorage.theme === "light") {
-    toggle.checked = false;
+    setChecked(false)
   }
   if (localStorage.theme === "dark") {
-    toggle.checked = true;
+    setChecked(true)
   }
 }
 
