@@ -1,8 +1,17 @@
-import { useEffect, useRef } from "react";
+import { CollectionReference, DocumentData } from "firebase/firestore";
+import { RefObject, useEffect, useRef } from "react";
+import { MessageType } from "../LiveChat";
 import Message from "./Message";
 import MessagesBar from "./MessagesBar";
 
-export default function MessagesList({ categoryId, messagesList, messagesListRef, messagesListDb }) {
+type Props = {
+  categoryId: string,
+  messagesList: MessageType[] | null,
+  messagesListRef: RefObject<HTMLDivElement>,
+  messagesListDb: CollectionReference<DocumentData>
+}
+
+export default function MessagesList({ categoryId, messagesList, messagesListRef, messagesListDb }: Props) {
   const messagesListActionRef = useRef({ action: "added" }); // added or deleted
   useEffect(() => {
     // For "deleted" we do not want to automatically scroll to bottom
@@ -13,8 +22,8 @@ export default function MessagesList({ categoryId, messagesList, messagesListRef
 
   return (
     <>
-      {messagesList.length === 0 && <p className="my-auto font-bold text-center text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
-      {messagesList.length > 0 &&
+      {(messagesList === null || messagesList?.length === 0) && <p className="my-auto font-bold text-center text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
+      {messagesList && messagesList.length > 0 &&
         <ul className="mb-auto">
           {messagesList.map((message) => {
             return <Message key={message.id} message={message} messagesListDb={messagesListDb} messagesListActionRef={messagesListActionRef} />

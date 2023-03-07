@@ -1,4 +1,8 @@
-export default function Loading({ wrapperClassNameToAdd }) {
+type Props = {
+  wrapperClassNameToAdd?: string
+}
+
+export default function Loading({ wrapperClassNameToAdd }: Props) {
   let wrapperClassName = "mx-auto";
   if (wrapperClassNameToAdd) {
     wrapperClassName += ` ${wrapperClassNameToAdd}`;

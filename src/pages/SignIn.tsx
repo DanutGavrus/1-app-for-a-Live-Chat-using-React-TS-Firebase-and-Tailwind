@@ -2,7 +2,7 @@ import { GoogleAuthProvider, getAuth, signInWithRedirect } from "firebase/auth";
 import { useOutletContext } from "react-router-dom";
 
 export default function SignIn() {
-  const { app } = useOutletContext();
+  const { app } = useOutletContext() as LiveChatContext;
 
   const handleSignIn = () => {
     signInWithRedirect(getAuth(app), new GoogleAuthProvider());
