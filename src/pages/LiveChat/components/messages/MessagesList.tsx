@@ -22,7 +22,7 @@ export default function MessagesList({ categoryId, messagesList, messagesListRef
 
   return (
     <>
-      {(messagesList === null || messagesList.length === 0) && <p className="my-auto font-bold text-center text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
+      {(messagesList === null || messagesList?.length === 0) && <p className="my-auto font-bold text-center text-accent">There are no messages for this category yet. Be the first to leave a new one!</p>}
       {messagesList && messagesList.length > 0 &&
         <ul className="mb-auto">
           {messagesList.map((message) => {

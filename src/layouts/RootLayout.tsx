@@ -23,7 +23,7 @@ export default function RootLayout(context: LiveChatContext) {
         <p className="ml-1 text-xs"><span>Dark mode</span></p>
       </label>
 
-      < Outlet context={context} />
+      <Outlet context={context} />
     </div>
   );
 }
