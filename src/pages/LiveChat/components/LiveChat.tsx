@@ -35,8 +35,10 @@ export default function LiveChat({ categoriesList }: Props) {
   }) : null;
 
   const categoriesBtnRef = useRef<HTMLButtonElement>(null);
+  //SG Typo categories
   const cateogiresListRef = useRef<HTMLDivElement>(null);
   const messagesListRef = useRef<HTMLDivElement>(null);
+
   const toggleShowCategories = () => {
     if (cateogiresListRef?.current?.classList?.contains("hidden")) {
       cateogiresListRef.current.classList.remove("hidden");

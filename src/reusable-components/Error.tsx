@@ -6,8 +6,11 @@ type Props = {
 }
 
 export default function Error({ error, wrapperClassName }: Props) {
-  const routeError = useRouteError();
-  const errorToShow = routeError ? routeError as Error : error;
+  const routeError = useRouteError() as Error;
+  /*SG Would be nice to use nullish coalescing operator if you check for the existence of a variable to use it after
+  Nullish coalescing checks if variable is undefined / null
+  */
+  const errorToShow = routeError ?? error;
 
   return (
     <div className={wrapperClassName ? wrapperClassName : ""}>

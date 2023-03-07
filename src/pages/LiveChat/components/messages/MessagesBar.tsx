@@ -11,7 +11,8 @@ type Props = {
 export default function MessagesBar({ categoryId, messagesListDb, messagesListActionRef }: Props) {
   const { user } = useOutletContext() as LiveChatContext;
 
-  const [messageContent, setMessageContent] = useState("");
+  //SG If you use typescript is recommanded to also add styles to useState
+  const [messageContent, setMessageContent] = useState<string>("");
 
   const messageInputRef = useRef<HTMLInputElement>(null);
 
@@ -45,6 +46,7 @@ export default function MessagesBar({ categoryId, messagesListDb, messagesListAc
   return (
     <div className="sticky bottom-0 grid grid-cols-12">
       <div className="col-span-10 md:col-span-11 relative">
+        {/*//SG I know that you prefer to have less lines of code but it's kind of hard to read a long one liner*/}
         <input ref={messageInputRef} type="text" maxLength={500} onKeyDown={(e) => handleSendMessage(e.key)} onChange={(e) => { setMessageContent(e.target.value) }} placeholder="Send a message..." className="w-full h-10 pl-3 pr-5 rounded-bl-xl border border-transparent focus:outline-none focus:border-accent dark:bg-black" />
         {messageContent.length > 0 && <button onClick={clearMessageText} className="absolute right-0 w-5 h-10 pr-2 text-center border border-transparent">✗</button>}
       </div>
