@@ -20,16 +20,20 @@ export type MessageType = {
 };
 type Props = {
   categoriesList: CategoryType[]
-}
+};
 
 export default function LiveChat({ categoriesList }: Props) {
   const { app } = useOutletContext() as LiveChatContext;
 
   const [categoryId, setCategoryId] = useState(categoriesList[0].id);
-  const [chatHeader, setChatHeader] = useState(`${categoriesList[0].unicode} ${categoriesList[0].title}`);
+  const [chatHeader, setChatHeader] = useState(
+    `${categoriesList[0].unicode} ${categoriesList[0].title}`
+  );
 
   const messagesListDb = collection(getFirestore(app), "messagesList");
-  const [messagesListCollection, loading, error] = useCollection(query(messagesListDb, where("categoryId", "==", categoryId), orderBy("timestamp")));
+  const [messagesListCollection, loading, error] = useCollection(
+    query(messagesListDb, where("categoryId", "==", categoryId), orderBy("timestamp"))
+  );
   const messagesList: MessageType[] | null = messagesListCollection?.docs?.map((doc) => {
     return { id: doc.id, ...doc.data() } as MessageType
   }) ?? null;

@@ -3,7 +3,9 @@ import { Outlet } from "react-router-dom";
 import { setExplicitTheme } from "../scripts/theme";
 
 export default function RootLayout(context: LiveChatContext) {
-  const [isChecked, setIsChecked] = useState(localStorage.isDarkTheme === "true" ? true : false);
+  const [isChecked, setIsChecked] = useState(
+    localStorage.isDarkTheme === "true" ? true : false
+  );
 
   const handleThemeToggleClick = (isDarkTheme: boolean) => {
     setIsChecked(isDarkTheme);

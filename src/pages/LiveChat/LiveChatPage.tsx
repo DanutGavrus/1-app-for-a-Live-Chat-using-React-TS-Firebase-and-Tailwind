@@ -21,7 +21,9 @@ export default function LiveChatPage() {
     signOut(getAuth(app));
   }
 
-  const [categoriesListCollection, loading, error] = useCollection(query(collection(getFirestore(app), "categoriesList"), orderBy("timestamp")));
+  const [categoriesListCollection, loading, error] = useCollection(
+    query(collection(getFirestore(app), "categoriesList"), orderBy("timestamp"))
+  );
   const categoriesList: CategoryType[] | null = categoriesListCollection?.docs?.map((doc) => {
     return { id: doc.id, ...doc.data() } as CategoryType
   }) ?? null;

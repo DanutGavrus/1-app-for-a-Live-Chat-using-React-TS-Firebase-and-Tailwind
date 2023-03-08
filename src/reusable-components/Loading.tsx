@@ -1,6 +1,6 @@
 type Props = {
   wrapperClassNameToAdd?: string
-}
+};
 
 export default function Loading({ wrapperClassNameToAdd }: Props) {
 

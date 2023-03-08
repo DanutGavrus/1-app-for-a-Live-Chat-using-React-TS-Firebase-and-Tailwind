@@ -8,9 +8,10 @@ type Props = {
   toggleShowCategories: Function,
   innerRef?: RefObject<HTMLLIElement>,
   last?: boolean
-}
+};
 
-export default function Category({ category, setCategoryId, setChatHeader, toggleShowCategories, innerRef, last }: Props) {
+export default function Category({ category, setCategoryId, setChatHeader,
+  toggleShowCategories, innerRef, last }: Props) {
   const chatHeader = `${category.unicode} ${category.title}`;
 
   const updateChat = (categoryId: string, chatHeader: string) => {
