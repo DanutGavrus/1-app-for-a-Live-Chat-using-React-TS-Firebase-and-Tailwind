@@ -55,11 +55,10 @@ export default function CategoriesList({ innerRef, categoriesList, setCategoryId
   }, [manageScrollBtnsVisibility, categoriesFiltered]);
 
   const toggleScrollBtnVisibility = (position: string) => {
-    //SG seems cleaner with a switch case here IMO
     switch (position) {
-      case 'bottom': scrollDownBtnRef.current?.classList.add("invisible"); scrollUpBtnRef.current?.classList.remove("invisible"); break;
-      case 'top': scrollUpBtnRef.current?.classList.add("invisible"); scrollDownBtnRef.current?.classList.remove("invisible"); break;
-      default: scrollUpBtnRef.current?.classList.add("invisible"); scrollDownBtnRef.current?.classList.add("invisible");
+      case "bottom": scrollDownBtnRef.current?.classList.add("invisible"); scrollUpBtnRef.current?.classList.remove("invisible"); break;
+      case "top": scrollDownBtnRef.current?.classList.remove("invisible"); scrollUpBtnRef.current?.classList.add("invisible"); break;
+      default: scrollDownBtnRef.current?.classList.add("invisible"); scrollUpBtnRef.current?.classList.add("invisible");
     }
   };
 
