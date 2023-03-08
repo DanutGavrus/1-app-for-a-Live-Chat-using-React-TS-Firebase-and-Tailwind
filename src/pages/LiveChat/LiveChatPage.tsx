@@ -22,9 +22,9 @@ export default function LiveChatPage() {
   }
 
   const [categoriesListCollection, loading, error] = useCollection(query(collection(getFirestore(app), "categoriesList"), orderBy("timestamp")));
-  const categoriesList: CategoryType[] | null = categoriesListCollection?.docs ? categoriesListCollection.docs.map((doc) => {
+  const categoriesList: CategoryType[] | null = categoriesListCollection?.docs?.map((doc) => {
     return { id: doc.id, ...doc.data() } as CategoryType
-  }) : null;
+  }) ?? null;
 
   return (
     <>

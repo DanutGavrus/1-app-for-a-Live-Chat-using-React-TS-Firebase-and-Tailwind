@@ -30,9 +30,9 @@ export default function LiveChat({ categoriesList }: Props) {
 
   const messagesListDb = collection(getFirestore(app), "messagesList");
   const [messagesListCollection, loading, error] = useCollection(query(messagesListDb, where("categoryId", "==", categoryId), orderBy("timestamp")));
-  const messagesList: MessageType[] | null = messagesListCollection?.docs ? messagesListCollection.docs.map((doc) => {
+  const messagesList: MessageType[] | null = messagesListCollection?.docs?.map((doc) => {
     return { id: doc.id, ...doc.data() } as MessageType
-  }) : null;
+  }) ?? null;
 
   const categoriesBtnRef = useRef<HTMLButtonElement>(null);
   const categoriesListRef = useRef<HTMLDivElement>(null);
